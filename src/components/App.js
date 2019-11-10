@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TrelloList from './TrelloList'
+import { connect } from 'react-redux'
+import TrelloActionButton from './TrelloActionButton';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello World</h1>
-      <TrelloList title="test" />
-    </div>
-  );
+class App extends Component {
+  render() {
+
+    const { lists } = this.props
+
+    return (
+      <div style={styles.body}>
+        <h1>Hello World</h1>
+        <div style={styles.listsContainer}>
+          { lists.map(list => (
+            <TrelloList key={list.id} title={list.title} cards={list.cards} />
+          ))}
+          <TrelloActionButton list />
+        </div>
+      </div>
+    )
+  }
 }
 
-export default App;
+const styles = {
+  body: {
+    fontFamily: 'Roboto'
+  },
+  listsContainer: {
+    display: 'flex',
+    flexDirection: 'row'
+  }
+}
+
+const mapStateToProps = state => ({
+  lists: state.lists
+})
+
+export default connect(mapStateToProps)(App)
