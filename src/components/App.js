@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import '../index.css'
 import TrelloList from './TrelloList'
 import { connect } from 'react-redux'
 import TrelloActionButton from './TrelloActionButton'
@@ -17,7 +18,7 @@ class App extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div style={styles.body}>
-          <h1>Task Manager</h1>
+          <h1 style={{color: 'white'}}>Awesome Task Manager</h1>
           <div style={styles.listsContainer}>
             { lists.map(list => (
               <TrelloList listID={list.id} key={list.id} title={list.title} cards={list.cards} />
